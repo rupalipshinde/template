@@ -26,7 +26,6 @@ class TemplateController {
     protected $validation;
 
     public function __construct() {
-         echo "sdfsdfsdf".\Config::locale;
     }
 
     /**
@@ -36,6 +35,8 @@ class TemplateController {
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function forTemplate(Request $request) {
+        
+         echo "sdfsdfsdf".\Config::locale;
         return TemplateResource::collection(TemplateModel::search($request->filter)
                                 ->orderBy('created_at', 'desc')
                                 ->paginate($request->size, ['*'], 'pageNumber'));
