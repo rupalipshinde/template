@@ -26,6 +26,7 @@ class TemplateController {
     protected $validation;
 
     public function __construct() {
+         echo "sdfsdfsdf".\Config::locale;
     }
 
     /**
