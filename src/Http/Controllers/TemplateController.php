@@ -37,7 +37,7 @@ class TemplateController {
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function forTemplate(Request $request) {
-         $appLang = (isset($this->app->config->get('app.locale'))) ? $this->app->config->get('app.locale') : $this->app->config->get('app.fallback_locale');
+         $appLang = $this->app->config->get('app.locale')? $this->app->config->get('app.locale') : $this->app->config->get('app.fallback_locale');
         return TemplateResource::collection(TemplateModel::search($request->filter)
                                 ->where('language',$appLang)
                                 ->orderBy('created_at', 'desc')
