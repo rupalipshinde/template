@@ -8,6 +8,7 @@ use Rupalipshinde\Template\TemplateModel;
 use Rupalipshinde\Template\Http\Resources\Template as TemplateResource;
 use Rupalipshinde\Template\Http\Requests\StoreTemplateRequest as StoreTemplateRequest;
 use Rupalipshinde\Template\Http\Requests\UpdateTemplateRequest as UpdateTemplateRequest;
+use Illuminate\Foundation\Application;
 
 class TemplateController {
 
@@ -25,7 +26,8 @@ class TemplateController {
      */
     protected $validation;
 
-    public function __construct() {
+    public function __construct(Application $app) {
+        $this->app = $app;
     }
 
     /**
@@ -35,9 +37,9 @@ class TemplateController {
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function forTemplate(Request $request) {
-        
-         echo "sdfsdfsdf".\Config::locale;
+         $appLang = (isset($this->app->config->get('app.locale'))) ? $this->app->config->get('app.locale') : $this->app->config->get('app.fallback_locale');
         return TemplateResource::collection(TemplateModel::search($request->filter)
+                                ->where('language',$appLang)
                                 ->orderBy('created_at', 'desc')
                                 ->paginate($request->size, ['*'], 'pageNumber'));
     }
