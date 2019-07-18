@@ -37,9 +37,9 @@ class TemplateController {
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function forTemplate(Request $request) {
-         $appLang = $this->app->config->get('app.locale')? $this->app->config->get('app.locale') : $this->app->config->get('app.fallback_locale');
+        $appLang = $this->app->config->get('app.locale') ? $this->app->config->get('app.locale') : $this->app->config->get('app.fallback_locale');
         return TemplateResource::collection(TemplateModel::search($request->filter)
-                                ->where('language',$appLang)
+                                ->where('language', $appLang)
                                 ->orderBy('created_at', 'desc')
                                 ->paginate($request->size, ['*'], 'pageNumber'));
     }
@@ -61,7 +61,9 @@ class TemplateController {
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function findTemplateUsingEvent($event) {
+        $appLang = $this->app->config->get('app.locale') ? $this->app->config->get('app.locale') : $this->app->config->get('app.fallback_locale');
         return new TemplateResource(TemplateModel::where('event', $event)
+                        ->where('language', $appLang)
                         ->first());
     }
 
