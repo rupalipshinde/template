@@ -20,6 +20,7 @@ class TemplateServiceProvider extends ServiceProvider {
         $this->publishes([
             __DIR__ . '/../database/migrations/' => database_path('migrations')
         ]);
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/');
     }
 
     /**
@@ -31,9 +32,8 @@ class TemplateServiceProvider extends ServiceProvider {
         $this->mergeConfigFrom(
                 __DIR__ . '/config/template.php', 'template'
         );
-        
+
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
     }
-
 
 }
