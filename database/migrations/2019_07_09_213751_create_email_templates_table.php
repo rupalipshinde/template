@@ -14,14 +14,15 @@ class CreateEmailTemplatesTable extends Migration {
     public function up() {
         Schema::create('email_templates', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('title')->nullable();
-            $table->text('subject')->nullable();
-            $table->text('description')->nullable();
+            $table->string('title');
+            $table->string('subject');
+            $table->text('description');
             $table->string('language', 5)->default('en');
             $table->text('placeholder')->nullable();
-            $table->text('event')->nullable();
-            $table->text('status')->nullable();
+            $table->string('event')->nullable();
+            $table->enum('status', ['0', '1'])->default('0');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
