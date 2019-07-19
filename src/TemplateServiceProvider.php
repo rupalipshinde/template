@@ -12,15 +12,20 @@ class TemplateServiceProvider extends ServiceProvider {
      * @return  void
      */
     public function boot() {
+        $this->registerMigrations();
+
+        $this->publishes([
+            __DIR__ . '/../database/migrations' => database_path('migrations'),
+                ], 'template-migrations');
 
         $this->publishes([
             __DIR__ . '/config/template.php' => config_path('template.php'),
                 ], 'template');
 
-        $this->publishes([
-            __DIR__ . '/../database/migrations/' => database_path('migrations')
-        ]);
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/');
+//        $this->publishes([
+//            __DIR__ . '/../database/migrations/' => database_path('migrations')
+//        ]);
+//        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/');
     }
 
     /**
@@ -34,6 +39,17 @@ class TemplateServiceProvider extends ServiceProvider {
         );
 
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
+    }
+
+    /**
+     * Register Passport's migration files.
+     *
+     * @return void
+     */
+    protected function registerMigrations() {
+        if (Passport::$runsMigrations) {
+            return $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        }
     }
 
 }
