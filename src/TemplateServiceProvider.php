@@ -47,9 +47,7 @@ class TemplateServiceProvider extends ServiceProvider {
      * @return void
      */
     protected function registerMigrations() {
-        if (Passport::$runsMigrations) {
-            return $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-        }
+        return $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 
 }
