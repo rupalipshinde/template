@@ -42,7 +42,7 @@ class TemplateServiceProvider extends ServiceProvider {
     }
 
     /**
-     * Register Passport's migration files.
+     * Register Template migration files.
      *
      * @return void
      */
