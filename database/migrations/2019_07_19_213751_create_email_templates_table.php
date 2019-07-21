@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Rupalipshinde\Template\TemplateModel;
 
 class CreateEmailTemplatesTable extends Migration {
 
@@ -47,7 +48,7 @@ class CreateEmailTemplatesTable extends Migration {
                 'event' => 'forgot_password', 
                 'status' => '1'),
         );
-        EmailTemplates::insert($emailTemplates);
+        TemplateModel::insert($emailTemplates);
     }
 
     /**
