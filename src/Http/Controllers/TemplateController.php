@@ -109,8 +109,8 @@ class TemplateController {
         $template->description = $request->description;
         $template->language = $request->language;
         $template->placeholder = $request->placeholder;
-        $template->event = $request->event;
-        $template->status = $request->status;
+//        $template->event = $request->event;
+//        $template->status = $request->status;
         $template->save();
         return response(
                 array(
