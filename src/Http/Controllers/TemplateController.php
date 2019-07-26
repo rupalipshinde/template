@@ -73,8 +73,9 @@ class TemplateController {
      * @param  $event
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function findTemplateUsingLanguage($language) {
+    public function findTemplateUsingLanguage($language,$event) {
         return new TemplateResource(TemplateModel::where('language', $language)
+                        ->where('event', $event)
                         ->first());
     }
 
