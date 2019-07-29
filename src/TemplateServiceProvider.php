@@ -38,7 +38,7 @@ class TemplateServiceProvider extends ServiceProvider {
                 __DIR__ . '/config/template.php', 'template'
         );
 
-        $this->loadRoutesFrom(__DIR__ . '/routes.php');
+//        $this->loadRoutesFrom(__DIR__ . '/routes.php');
     }
 
     /**
