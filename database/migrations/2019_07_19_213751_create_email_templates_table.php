@@ -22,6 +22,7 @@ class CreateEmailTemplatesTable extends Migration {
             $table->text('placeholder')->nullable();
             $table->string('event')->nullable();
             $table->enum('status', ['0', '1'])->default('0');
+            $table->string('to')->default('A');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -46,7 +47,8 @@ class CreateEmailTemplatesTable extends Migration {
                 'language' => 'en', 
                 'placeholder' =>  '{\"SUPER_ADMIN_FIRST_NAME\" :\"translation.super_admin_first_name\",\"SUPER_ADMIN_LAST_NAME\" :\"translation.super_admin_last_name\",\"PASSWORD_RESET_URL\":\"translation.password_reset_url\",\"PORTAL_NAME\":\"translation.portal_name\"}',
                 'event' => 'forgot_password', 
-                'status' => '1'),
+                'status' => '1',
+                'to' => 'A'),
         );
         TemplateModel::insert($emailTemplates);
     }
