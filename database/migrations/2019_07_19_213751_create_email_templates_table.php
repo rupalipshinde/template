@@ -30,19 +30,19 @@ class CreateEmailTemplatesTable extends Migration {
             array('id' => '1',
                 'title' => 'Notification to Simplex Admin for Password Reset (Forgot Password)',
                 'subject' => 'Reset your password',
-                'description' => 'Hello [SUPER_ADMIN_FIRST_NAME] [SUPER_ADMIN_LAST_NAME],
+                'description' => '<p>Hello [SUPER_ADMIN_FIRST_NAME] [SUPER_ADMIN_LAST_NAME],</p>
 
-                We recently received a request to reset your [PORTAL_NAME] password.
+                <p>We recently received a request to reset your [PORTAL_NAME] password.</p>
 
-                Click here to change your password. 
+                <p>Click here to change your password.</p>
 
-                [PASSWORD_RESET_URL]                               
+                <p>[PASSWORD_RESET_URL]</p>                            
 
-                Account URL: [PORTAL_ADDRESS]
+                <p>Account URL: [PORTAL_ADDRESS]</p>
 
-                Thanks,
+                <p>Thanks,</p>
 
-                [PORTAL_NAME] Team', 
+                <p>[PORTAL_NAME] Team</p>',
                 'language' => 'en', 
                 'placeholder' =>  '{\"SUPER_ADMIN_FIRST_NAME\" :\"translation.super_admin_first_name\",\"SUPER_ADMIN_LAST_NAME\" :\"translation.super_admin_last_name\",\"PASSWORD_RESET_URL\":\"translation.password_reset_url\",\"PORTAL_NAME\":\"translation.portal_name\"}',
                 'event' => 'forgot_password', 
