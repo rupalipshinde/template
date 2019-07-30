@@ -126,7 +126,7 @@ class TemplateController {
         $template->save();
         return response(
                 array(
-            "message" => __('Updated', array('entity' => trans('common.translation'))),
+            "message" => __('crud.updated_msg', array('entity' => trans('common.translation'))),
             "status" => true,
                 ), 200);
     }
