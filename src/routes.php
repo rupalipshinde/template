@@ -16,4 +16,4 @@ Route::post('/store-template', '\Rupalipshinde\Template\Http\Controllers\Templat
 Route::put('/update-template/{template_id}', '\Rupalipshinde\Template\Http\Controllers\TemplateController@update');
 Route::delete('/delete-template/{template_id}', '\Rupalipshinde\Template\Http\Controllers\TemplateController@destroy');
  
-Route::put('/update-template-status/{template_id}/{status}', '\Rupalipshinde\Template\Http\Controllers\TemplateController@updateTemplateStatus');
+Route::post('/update-template-status/{template_id}/{status}', '\Rupalipshinde\Template\Http\Controllers\TemplateController@updateTemplateStatus');
