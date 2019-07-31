@@ -28,5 +28,19 @@ class UpdateTemplateRequest extends FormRequest {
             'subject' => 'required'
         ];
     }
+    
+     
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes() {
+       return [
+            'title' => trans('translation.title'),
+            'description' => trans('translation.description'),
+            'subject' => trans('translation.subject'),
+        ];
+    }
 
 }
