@@ -70,19 +70,18 @@ class TemplateController {
         $templateData = new TemplateResource(TemplateModel::where('event', $event)
                         ->where('language', $appLang)
                         ->first());
-
-        foreach (json_decode($templateData['placeholder']) as $key => $value) {
-            $templateData['description'] = str_replace($key, $data[$key], $templateData['description']);
+        foreach ($data as $datakey => $value) {
+            foreach (json_decode($templateData['placeholder']) as $key => $value) {
+                if ($key == $datakey) {
+                    $templateData['description'] = str_replace("[" . $key . "]", $data[$datakey], $templateData['description']);
+                }
+            }
         }
-        
-        //placeholder parsing
-//        $templateData['description'] = str_replace("[SUPER_ADMIN_FIRST_NAME]", $data['first_name'], $templateData['description']);
-//        $templateData['description'] = str_replace("[SUPER_ADMIN_LAST_NAME]", $data['last_name'], $templateData['description']);
-//        $templateData['description'] = str_replace("[PORTAL_NAME]", 'poratl name', $templateData['description']);
-//        $templateData['description'] = str_replace("[PORTAL_ADDRESS]", 'portal address', $templateData['description']);
+
         if ($link != '') {
             $templateData['description'] = str_replace("[PASSWORD_RESET_URL]", $link, $templateData['description']);
         }
+        return $templateData;
     }
 
     /**
