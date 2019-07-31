@@ -18,6 +18,7 @@ class Template {
         Route::get('/get-template-using-language/{language}/{event}', ['as' => 'get-template-using-language', 'uses' => '\Rupalipshinde\Template\Http\Controllers\TemplateController@findTemplateUsingLanguage']);
         Route::post('/store-template', '\Rupalipshinde\Template\Http\Controllers\TemplateController@store');
         Route::put('/update-template/{template_id}', '\Rupalipshinde\Template\Http\Controllers\TemplateController@update');
+        Route::put('/update-template-status/{template_id}/{status}', '\Rupalipshinde\Template\Http\Controllers\TemplateController@updateTemplateStatus');
         Route::delete('/delete-template/{template_id}', '\Rupalipshinde\Template\Http\Controllers\TemplateController@destroy');
     }
 

@@ -66,14 +66,14 @@ class TemplateController {
                         ->where('language', $appLang)
                         ->first());
     }
-    
-     /**
+
+    /**
      * Get template using language .
      *
      * @param  $event
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function findTemplateUsingLanguage($language,$event) {
+    public function findTemplateUsingLanguage($language, $event) {
         return new TemplateResource(TemplateModel::where('language', $language)
                         ->where('event', $event)
                         ->first());
@@ -120,13 +120,35 @@ class TemplateController {
         $template->subject = $request->subject;
         $template->description = $request->description;
         $template->language = $request->language;
-//        $template->placeholder = $request->placeholder;
-//        $template->event = $request->event;
-//        $template->status = $request->status;
         $template->save();
         return response(
                 array(
             "message" => __('crud.updated_msg', array('entity' => trans('common.translation'))),
+            "status" => true,
+                ), 200);
+    }
+
+    /**
+     * Update the status.
+     *
+     * @param  int $string
+     * @param  string  $templateId
+     * @return \Illuminate\Http\Response|\rupalipshinde\template\Template
+     */
+    public function updateTemplateStatus($templateId, $status) {
+        if (!in_array($status, array('0', '1'))) {
+            return response(
+                    array(
+                "message" => __('validation.in', array('entity' => trans('common.status'))),
+                "status" => false,
+                    ), 422);
+        }
+        $template = TemplateModel::findOrFail($templateId);
+        $template->status = $status;
+        $template->save();
+        return response(
+                array(
+            "message" => __('crud.updated_msg', array('entity' => trans('common.status'))),
             "status" => true,
                 ), 200);
     }
