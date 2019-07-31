@@ -45,7 +45,7 @@ class CreateEmailTemplatesTable extends Migration {
 
                 <p>[PORTAL_NAME] Team</p>',
                 'language' => 'en', 
-                'placeholder' =>  '{"SUPER_ADMIN_FIRST_NAME" :"translation.super_admin_first_name","SUPER_ADMIN_LAST_NAME" :"translation.super_admin_last_name","PASSWORD_RESET_URL":"translation.password_reset_url","PORTAL_NAME":"translation.portal_name"}',
+                'placeholder' =>  '{"SUPER_ADMIN_FIRST_NAME" :"translation.super_admin_first_name","SUPER_ADMIN_LAST_NAME" :"translation.super_admin_last_name","PASSWORD_RESET_URL":"translation.password_reset_url","PORTAL_NAME":"translation.portal_name","PORTAL_ADDRESS":"translation.portal_address"}',
                 'event' => 'forgot_password', 
                 'status' => '1',
                 'mail_to' => 'A'),
