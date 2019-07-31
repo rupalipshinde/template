@@ -62,13 +62,27 @@ class TemplateController {
      * Get template using event .
      *
      * @param  $event
+     * @param $data
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function findTemplateUsingEvent($event) {
+    public function findTemplateUsingEvent($event, $data, $link = '') {
         $appLang = $this->app->config->get('app.locale') ? $this->app->config->get('app.locale') : $this->app->config->get('app.fallback_locale');
-        return new TemplateResource(TemplateModel::where('event', $event)
+        $templateData = new TemplateResource(TemplateModel::where('event', $event)
                         ->where('language', $appLang)
                         ->first());
+
+        foreach (json_decode($templateData['placeholder']) as $key => $value) {
+            $templateData['description'] = str_replace($key, $data[$key], $templateData['description']);
+        }
+        
+        //placeholder parsing
+//        $templateData['description'] = str_replace("[SUPER_ADMIN_FIRST_NAME]", $data['first_name'], $templateData['description']);
+//        $templateData['description'] = str_replace("[SUPER_ADMIN_LAST_NAME]", $data['last_name'], $templateData['description']);
+//        $templateData['description'] = str_replace("[PORTAL_NAME]", 'poratl name', $templateData['description']);
+//        $templateData['description'] = str_replace("[PORTAL_ADDRESS]", 'portal address', $templateData['description']);
+        if ($link != '') {
+            $templateData['description'] = str_replace("[PASSWORD_RESET_URL]", $link, $templateData['description']);
+        }
     }
 
     /**
