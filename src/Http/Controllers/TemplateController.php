@@ -40,6 +40,10 @@ class TemplateController {
         $appLang = $this->app->config->get('app.locale') ? $this->app->config->get('app.locale') : $this->app->config->get('app.fallback_locale');
         return TemplateResource::collection(TemplateModel::search($request->filter)
                                 ->where('language', $appLang)
+                                ->search($request->filter)
+                                ->when($request->sort_name != '', function($query) use ($request) {
+                                    $query->orderBy($request->sort_name, $request->sort_dir);
+                                })
                                 ->orderBy('created_at', 'desc')
                                 ->paginate($request->size, ['*'], 'pageNumber'));
     }
