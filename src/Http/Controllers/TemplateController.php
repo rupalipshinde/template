@@ -74,6 +74,7 @@ class TemplateController {
             foreach (json_decode($templateData['placeholder']) as $key => $value) {
                 if ($key == $datakey) {
                     $templateData['description'] = str_replace("[" . $key . "]", $data[$datakey], $templateData['description']);
+                     break;
                 }
             }
         }
