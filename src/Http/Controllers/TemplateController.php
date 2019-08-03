@@ -141,7 +141,7 @@ class TemplateController {
         $template->save();
         return response(
                 array(
-            "message" => __('crud.updated_msg', array('entity' => trans('common.translation'))),
+            "message" => __('translations.updated_msg', array('attribute' => trans('common.template'))),
             "status" => true,
                 ), 200);
     }
@@ -157,7 +157,7 @@ class TemplateController {
         if (!in_array($status, array('0', '1'))) {
             return response(
                     array(
-                "message" => __('validation.in', array('entity' => trans('common.status'))),
+                "message" => __('validation.in', array('attribute' => trans('common.status'))),
                 "status" => false,
                     ), 422);
         }
@@ -166,7 +166,7 @@ class TemplateController {
         $template->save();
         return response(
                 array(
-            "message" => __('crud.updated_msg', array('entity' => trans('common.status'))),
+            "message" => __('translations.updated_msg', array('attribute' => trans('common.status'))),
             "status" => true,
                 ), 200);
     }
