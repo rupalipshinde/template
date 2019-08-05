@@ -37,9 +37,9 @@ class UpdateTemplateRequest extends FormRequest {
      */
     public function attributes() {
        return [
-            'title' => trans('translation.title'),
-            'description' => trans('translation.description'),
-            'subject' => trans('translation.subject'),
+            'title' => trans('translations.title'),
+            'description' => trans('translations.description'),
+            'subject' => trans('translations.subject'),
         ];
     }
 
