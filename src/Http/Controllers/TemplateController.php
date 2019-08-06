@@ -157,7 +157,7 @@ class TemplateController {
         if (!in_array($status, array('0', '1'))) {
             return response(
                     array(
-                "message" => __('validation.in', array('attribute' => trans('common.status'))),
+                "message" => __('validation.in', array('attribute' => trans('translations.status'))),
                 "status" => false,
                     ), 422);
         }
@@ -166,7 +166,7 @@ class TemplateController {
         $template->save();
         return response(
                 array(
-            "message" => __('translations.updated_msg', array('attribute' => trans('common.status'))),
+            "message" => __('translations.updated_msg', array('attribute' => trans('translations.status'))),
             "status" => true,
                 ), 200);
     }
