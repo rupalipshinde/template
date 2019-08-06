@@ -141,7 +141,7 @@ class TemplateController {
         $template->save();
         return response(
                 array(
-            "message" => __('translations.updated_msg', array('attribute' => trans('common.template'))),
+            "message" => __('translations.updated_msg', array('attribute' => trans('translations.template'))),
             "status" => true,
                 ), 200);
     }
