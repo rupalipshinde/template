@@ -44,7 +44,6 @@ class TemplateController {
                                 ->when($request->sort_name != '', function($query) use ($request) {
                                     $query->orderBy($request->sort_name, $request->sort_dir);
                                 })
-                                ->groupBy('event')
                                 ->orderBy('created_at', 'desc')
                                 ->paginate($request->size, ['*'], 'pageNumber'));
     }
