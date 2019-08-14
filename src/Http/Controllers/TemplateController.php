@@ -69,7 +69,7 @@ class TemplateController {
         $appLang = $this->app->config->get('app.locale') ? $this->app->config->get('app.locale') : $this->app->config->get('app.fallback_locale');
         $templateData = new TemplateResource(TemplateModel::where('event', $event)
                         ->where('language', $appLang)
-                        ->where('status',1)
+                        ->where('status', 1)
                         ->first());
         foreach ($data as $datakey => $value) {
             foreach (json_decode($templateData['placeholder']) as $key => $value) {
@@ -129,12 +129,14 @@ class TemplateController {
      * @return \Illuminate\Http\Response|\rupalipshinde\template\Template
      */
     public function update(UpdateTemplateRequest $request, $event) {
-        $template = TemplateModel::where('event',$event)
-                                  ->where('language',$request->language)->first();
+        $template = TemplateModel::where('event', $event)
+                        ->where('language', $request->language)->first();
 
         if (!$template) {
-            return $this->store($request);
-//            return new Response('', 404);
+            $template = new TemplateModel();
+            $template->placeholder = $request->placeholder;
+            $template->event = $request->event;
+            $template->status = $request->status;
         }
 
         $template->title = $request->title;
