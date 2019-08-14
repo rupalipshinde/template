@@ -44,6 +44,7 @@ class TemplateController {
                                 ->when($request->sort_name != '', function($query) use ($request) {
                                     $query->orderBy($request->sort_name, $request->sort_dir);
                                 })
+                                ->groupBy('event')
                                 ->orderBy('created_at', 'desc')
                                 ->paginate($request->size, ['*'], 'pageNumber'));
     }
@@ -116,7 +117,7 @@ class TemplateController {
         $template->save();
         return response(
                 array(
-            "message" => __('Created', array('entity' => trans('common.template'))),
+            "message" => __('translations.created_msg', array('attribute' => trans('common.template'))),
             "status" => true,
                 ), 201);
     }
@@ -128,11 +129,13 @@ class TemplateController {
      * @param  string  $templateId
      * @return \Illuminate\Http\Response|\rupalipshinde\template\Template
      */
-    public function update(UpdateTemplateRequest $request, $templateId) {
-        $template = TemplateModel::findOrFail($templateId);
+    public function update(UpdateTemplateRequest $request, $event) {
+        $template = TemplateModel::where('event',$event)
+                                  ->where('language',$request->language)->first();
 
         if (!$template) {
-            return new Response('', 404);
+            return $this->store($request);
+//            return new Response('', 404);
         }
 
         $template->title = $request->title;
