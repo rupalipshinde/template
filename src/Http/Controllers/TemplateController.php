@@ -136,7 +136,7 @@ class TemplateController {
             $template = new TemplateModel();
             $template->placeholder = $request->placeholder;
             $template->event = $request->event;
-            $template->status = $request->status;
+            $template->status = 1;
         }
 
         $template->title = $request->title;
