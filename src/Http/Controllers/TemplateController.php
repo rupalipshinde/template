@@ -135,7 +135,7 @@ class TemplateController {
         if (!$template) {
             $template = new TemplateModel();
             $template->placeholder = $request->placeholder;
-            $template->event = $request->event;
+            $template->event = $event;
             $template->status = 1;
         }
 
