@@ -20,7 +20,7 @@ class CreateEmailTemplatesTable extends Migration {
             $table->text('description');
             $table->string('language', 5)->default('en-us');
             $table->text('placeholder')->nullable();
-            $table->string('event')->nullable();
+            $table->string('event');
             $table->enum('status', ['0', '1'])->default('0');
             $table->string('mail_to')->default('A');
             $table->timestamps();
