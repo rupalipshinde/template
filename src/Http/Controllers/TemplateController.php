@@ -68,7 +68,7 @@ class TemplateController {
         $appLang = $this->app->config->get('app.locale') ? $this->app->config->get('app.locale') : $this->app->config->get('app.fallback_locale');
         $templateData = new TemplateResource(TemplateModel::where('event', $event)
                         ->where('language', $appLang)
-                        ->where('status', 1)
+                        ->where('status', '1')
                         ->first());
         foreach ($data as $datakey => $value) {
             foreach (json_decode($templateData['placeholder']) as $key => $value) {
