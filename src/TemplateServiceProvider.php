@@ -12,7 +12,7 @@ class TemplateServiceProvider extends ServiceProvider {
      * @return  void
      */
     public function boot() {
-        $this->registerMigrations();
+//        $this->registerMigrations();
 
         $this->publishes([
             __DIR__ . '/../database/migrations' => database_path('migrations'),
