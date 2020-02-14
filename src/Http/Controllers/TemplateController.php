@@ -70,17 +70,19 @@ class TemplateController {
                         ->where('language', $appLang)
                         ->where('status', '1')
                         ->first());
-        foreach ($data as $datakey => $value) {
-            foreach (json_decode($templateData['placeholder']) as $key => $value) {
-                if ($key == $datakey) {
-                    $templateData['description'] = str_replace("[" . $key . "]", $data[$datakey], $templateData['description']);
-                    break;
+        if ($templateData) {
+            foreach ($data as $datakey => $value) {
+                foreach (json_decode($templateData['placeholder']) as $key => $value) {
+                    if ($key == $datakey) {
+                        $templateData['description'] = str_replace("[" . $key . "]", $data[$datakey], $templateData['description']);
+                        break;
+                    }
                 }
             }
-        }
 
-        if ($link != '') {
-            $templateData['description'] = str_replace("[PASSWORD_RESET_URL]", $link, $templateData['description']);
+            if ($link != '') {
+                $templateData['description'] = str_replace("[PASSWORD_RESET_URL]", $link, $templateData['description']);
+            }
         }
         return $templateData;
     }
