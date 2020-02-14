@@ -157,7 +157,7 @@ class TemplateController {
      * @param  string  $templateId
      * @return \Illuminate\Http\Response|\rupalipshinde\template\Template
      */
-    public function updateTemplateStatus($templateId, $status) {
+    public function updateTemplateStatus(Request $request, $status) {
         if (!in_array($status, array('0', '1'))) {
             return response(
                     array(
@@ -165,9 +165,9 @@ class TemplateController {
                 "status" => false,
                     ), 422);
         }
-        $template = TemplateModel::findOrFail($templateId);
-        $template->status = $status;
-        $template->save();
+        $template = TemplateModel::where('event', $request->event)->update([
+            'status' => $status,
+        ]);
         return response(
                 array(
             "message" => __('translations.updated_msg', array('attribute' => trans('translations.status'))),
